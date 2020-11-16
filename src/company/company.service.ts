@@ -91,6 +91,11 @@ export class CompanyService {
     const reviews = await this.reviewRepository.find({ where: { companyId: company.id, status: 'active'}});
     return {reviews: reviews};
   }
+  async findInActiveReviews(slug: string): Promise<ReviewsRO> {
+    const company = await this.companyRepository.findOne({slug});
+    const reviews = await this.reviewRepository.find({ where: { companyId: company.id, status: 'pending'}});
+    return {reviews: reviews};
+  }
   async findReviews(slug: string): Promise<ReviewsRO> {
     const company = await this.companyRepository.findOne({slug});
     return {reviews: company.reviews};

@@ -26,15 +26,6 @@ export class CompanyController {
     return await this.companyService.findAll(query);
   }
 
-
-  // @ApiOperation({ summary: 'Get company feed' })
-  // @ApiResponse({ status: 200, description: 'Return company feed.'})
-  // @ApiResponse({ status: 403, description: 'Forbidden.' })
-  // @Get('feed')
-  // async getFeed(@User('id') userId: number, @Query() query): Promise<CompaniesRO> {
-  //   return await this.companyService.findFeed(userId, query);
-  // }
-
   @Get(':slug')
   async findOne(@Param('slug') slug): Promise<CompanyRO> {
     return await this.companyService.findOne({slug});
@@ -44,6 +35,12 @@ export class CompanyController {
   async findReviews(@Param('slug') slug): Promise<ReviewsRO> {
     return await this.companyService.findReviews(slug);
   }
+
+  @Get(':slug/reviews/active')
+  async findActiveReviews(@Param('slug') slug): Promise<ReviewsRO> {
+    return await this.companyService.findActiveReviews(slug);
+  }
+
 
   @ApiOperation({ summary: 'Create company' })
   @ApiResponse({ status: 201, description: 'The company has been successfully created.'})

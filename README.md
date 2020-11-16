@@ -25,19 +25,15 @@ Copy config file and set JsonWebToken secret key
 
 ## Database
 
-The codebase contains examples of two different database abstractions, namely [TypeORM](http://typeorm.io/). 
+The system uses a database abstractions, namely [TypeORM](http://typeorm.io/). 
     
-The branch `master` implements TypeORM with a mySQL database.
-
-The branch `prisma` implements Prisma with a mySQL database.
-
 ----------
 
 ##### TypeORM
 
 ----------
 
-Create a new mysql database with the name `nestjsrealworld`\
+Create a new mysql database with the name `company_review`\
 (or the name you specified in the ormconfig.json)
 
 Copy TypeORM config example file for database settings
@@ -52,12 +48,12 @@ Set mysql database settings in ormconfig.json
       "port": 3306,
       "username": "your-mysql-username",
       "password": "your-mysql-password",
-      "database": "nestjsrealworld",
+      "database": "company_review",
       "entities": ["src/**/**.entity{.ts,.js}"],
       "synchronize": true
     }
     
-Start local mysql server and create new database 'nestjsrealworld'
+Start local mysql server and create new database 'company_review'
 
 On application start, tables for all entities will be created.
 

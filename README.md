@@ -7,11 +7,11 @@ Reviews play a vital role in the world today when someone decides what services 
 
 Clone the repository
 
-    git clone https://github.com/willypelz/review-system-be.git
+    git clone https://github.com/willypelz/cr-system-be.git
 
 Switch to the repo folder
 
-    cd review-system-be
+    cd cr-system-be
     
 Install dependencies
     

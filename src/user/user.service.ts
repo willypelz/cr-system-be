@@ -38,7 +38,7 @@ export class UserService {
   async create(dto: CreateUserDto): Promise<UserRO> {
 
     // check uniqueness of username/email
-    const {username, email, password} = dto;
+    const {username, email, password, role} = dto;
     const qb = await getRepository(UserEntity)
         .createQueryBuilder('user')
         .where('user.username = :username', { username })
@@ -57,6 +57,7 @@ export class UserService {
     newUser.username = username;
     newUser.email = email;
     newUser.password = password;
+    newUser.role = role;
     newUser.companies = [];
 
     const errors = await validate(newUser);
@@ -87,7 +88,7 @@ export class UserService {
     const user = await this.userRepository.findOne(id);
 
     if (!user) {
-      const errors = {User: ' not found'};
+      const errors = {User: ' User not found'};
       throw new HttpException({errors}, 401);
     }
 

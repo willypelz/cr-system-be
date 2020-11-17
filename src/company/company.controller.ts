@@ -37,10 +37,18 @@ export class CompanyController {
   }
 
   @Get(':slug/reviews/active')
-  async findActiveReviews(@Param('slug') slug): Promise<ReviewsRO> {
+  async findActiveReviews(@Param('slug') slug): Promise<CompanyRO> {
     return await this.companyService.findActiveReviews(slug);
   }
 
+
+  @ApiOperation({ summary: 'Activate review status' })
+  @ApiResponse({ status: 201, description: 'The review status has been activated.'})
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
+  @Put(':slug/reviews/:id')
+  async ActiveReviews(@Param() params, @Body('') reviewData: CreateReviewDto) {
+    return this.companyService.updateReview(params.id, reviewData);
+  }
 
   @ApiOperation({ summary: 'Create company' })
   @ApiResponse({ status: 201, description: 'The company has been successfully created.'})

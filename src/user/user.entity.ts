@@ -19,6 +19,9 @@ export class UserEntity {
   @Column()
   password: string;
 
+  @Column({default: 'user'}) //main application will should be user role base system
+  role: string;
+
   @BeforeInsert()
   async hashPassword() {
     this.password = await argon2.hash(this.password);

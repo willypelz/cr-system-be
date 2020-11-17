@@ -86,16 +86,20 @@ export class CompanyService {
 
   }
 
-  async findActiveReviews(slug: string): Promise<ReviewsRO> {
-    const company = await this.companyRepository.findOne({slug});
-    const reviews = await this.reviewRepository.find({ where: { companyId: company.id, status: 'active'}});
-    return {reviews: reviews};
+    async updateReview(id: string, reviewData: any): Promise<Review> {
+        let toUpdate = await this.reviewRepository.findOne(id);
+        let updated = Object.assign(toUpdate, reviewData);
+        const review = await this.reviewRepository.save(updated);
+        // @ts-ignore
+        return {review};
+    }
+
+  async findActiveReviews(slug: string): Promise<CompanyRO> {
+    let company = await this.companyRepository.findOne({slug});
+    company.reviews = company.reviews.filter(e => e.status === 'active')
+    return {company: company};
   }
-  async findInActiveReviews(slug: string): Promise<ReviewsRO> {
-    const company = await this.companyRepository.findOne({slug});
-    const reviews = await this.reviewRepository.find({ where: { companyId: company.id, status: 'pending'}});
-    return {reviews: reviews};
-  }
+
   async findReviews(slug: string): Promise<ReviewsRO> {
     const company = await this.companyRepository.findOne({slug});
     return {reviews: company.reviews};

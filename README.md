@@ -57,6 +57,18 @@ Start local mysql server and create new database 'company_review'
 
 On application start, tables for all entities will be created.
 
+###Set an admin for the application
+seed this information into the database or change any role user you wish to be admin to admin for testing
+and due to the time constrain. 
+
+    {  
+        "username": "admin"
+        "email": "admin@gmail.com",
+        "password": "password",
+        "role": "admin"
+    }
+    
+
 ## NPM scripts
 
 - `npm start` - Start application

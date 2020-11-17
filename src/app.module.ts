@@ -4,6 +4,8 @@ import { CompanyModule } from './company/company.module';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
+import {loadFixtures} from "./seeder/user.seeder";
+
 
 @Module({
   imports: [
@@ -16,6 +18,7 @@ import { Connection } from 'typeorm';
   ],
   providers: []
 })
+
 export class ApplicationModule {
   constructor(private readonly connection: Connection) {}
 }

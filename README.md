@@ -1,4 +1,4 @@
-# Company review system.
+# Company review system
 Reviews play a vital role in the world today when someone decides what services or product one want to consume.
 
 # Getting started
